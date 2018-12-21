@@ -1,0 +1,104 @@
+# install docker-ce
+
+# install apt repository 
+sudo apt-get update
+
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+LOI1: CHAY LAI SUDO UPDATE , ROI CHAY"SUDO APT-GET INSTALL LIBREADLINE5"
+//READING PACKAGE LISTS... DONE
+BUILDING DEPENDENCY TREE       
+READING STATE INFORMATION... DONE
+CA-CERTIFICATES IS ALREADY THE NEWEST VERSION (20170717~16.04.1).
+SOFTWARE-PROPERTIES-COMMON IS ALREADY THE NEWEST VERSION (0.96.20.7).
+YOU MIGHT WANT TO RUN 'APT-GET -F INSTALL' TO CORRECT THESE:
+THE FOLLOWING PACKAGES HAVE UNMET DEPENDENCIES:
+ CURL : DEPENDS: LIBCURL3-GNUTLS (= 7.47.0-1UBUNTU2.11) BUT 7.47.0-1UBUNTU2.8 IS TO BE INSTALLED
+ WPASUPPLICANT : DEPENDS: LIBREADLINE5 (>= 5.2) BUT IT IS NOT GOING TO BE INSTALLED
+E: UNMET DEPENDENCIES. TRY 'APT-GET -F INSTALL' WITH NO PACKAGES (OR SPECIFY A SOLUTION).
+//HET LOI 1
+
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+# install docker-ce
+sudo apt-get install docker-ce
+
+Loi2:
+Doi 10phut khong xong tai docker ce 
+het loi2
+
+
+
+# test docker
+sudo docker run hello-world
+
+#install docker-compose
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+# test docker-compose
+docker-compose --version
+
+# install nodejs -> required ver 8.9.x
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# test nodejs
+node -v
+
+# install git
+sudo apt-get install git
+
+# test git
+git --version
+
+# install editor vscode
+https://code.visualstudio.com/docs/?dv=linux64_deb
+
+# clone caliper to Desktop
+cd ~/Desktop
+git clone https://github.com/hyperledger/caliper.git
+
+cd ~/Desktop/caliper
+npm install
+npm install grpc@1.10.1 fabric-ca-client@1.1.0 fabric-client@1.1.0
+
+# run caliper using fabric blockchain
+node benchmark/simple/main.js -c config.json -n fabric.json
+
+### wait a minutes for docker to pulling new images of fabric and its components
+
+loi 3 //
+
+xem them o day, 
+tang request timeout len 240000 , ko dc thi 500000. 
+
+
+
+//het loi 3 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

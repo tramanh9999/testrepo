@@ -1,0 +1,68 @@
+Downgrade wpa_supplicant Ubuntu 16.04
+dpkg -i wpasupplicant_2.1-0ubuntu7.3_amd64.deb
+sudo apt-mark hold wpasupplicant
+sudo /etc/init.d/network-manager restart
+sudo gedit /etc/NetworkManager/NetworkManager.conf
+sua noi dung thanh nhu sau:
+[main]
+plugins=ifupdown,keyfile,ofono
+#dns=dnsmasq
+dhcp=dhclient
+dns=default
+
+[ifupdown]
+managed=false
+
+save lai, roi lai chay:
+sudo /etc/init.d/network-manager restart
+check version:
+wpa_supplicant -v
+xem da la: wpa_supplicant v2.1
+Copyright (c) 2003-2014, Jouni Malinen <j@w1.fi> and contributors
+ 
+
+http://launchpadlibrarian.net/225613638/wpasupplicant_2.1-0ubuntu7.3_amd64.deb
+https://mirror.fccn.pt/repos/pub/ubuntu/pool/main/w/wpa/
+
+echo "deb http://london.mirrors.linode.com/ubuntu/ vivid main" | sudo tee /etc/apt/sources.list.d/vivid.list
+echo -e "Package: *\nPin: release o=Ubuntu,n=vivid\nPin-Priority: -1" | sudo tee cat /etc/apt/preferences.d/vivid
+
+sudo apt-get update
+sudo apt-get install wpasupplicant=2.1-0ubuntu7
+sudo apt-mark hold wpasupplicant
+sudo /etc/init.d/network-manager restart
+
+https://www.facebook.com/notes/nguy%E1%BB%85n-duy-h%E1%BA%A3i/how-i-successfully-connected-to-dh-fpt-wi-fi-in-linux-arch-linux/883322418481083/?fref=gs&dti=469022096924551&hc_location=group
+
+https://debian.pkgs.org/8/debian-main-amd64/wpasupplicant_2.3-1+deb8u5_amd64.deb.html
+
+
+https://askubuntu.com/questions/1046810/cannot-downgrade-wpa-supplicant-to-fix-wi-fi-connection-to-a-corporate-network
+
+$ cat <<'EOF' | sudo tee /etc/apt/sources.list.d/vivid.list
+deb http://old-releases.ubuntu.com/ubuntu/ vivid main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ vivid-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ vivid-security main restricted universe multiverse
+EOF
+
+$ cat <<'EOF' | sudo tee /etc/apt/sources.list.d/xenial.list
+deb http://es.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse
+deb http://es.archive.ubuntu.com/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://es.archive.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse
+EOF
+
+
+Update your repo list.
+
+$ sudo apt -y update
+Downgrade wpasupplicant and install libssl.
+
+$ sudo apt -y install wpasupplicant=2.1-0ubuntu7.3
+
+$ sudo apt -y install libssl1.0.0=1.0.2g-1ubuntu4.13
+Setup priority for the recently installed packages.
+
+$ sudo echo -e "Package: wpasupplicant\nPin: release o=Ubuntu,n=vivid\nPin-Priority: 1001" | sudo tee /etc/apt/preferences.d/vivid
+
+$ sudo echo -e "Package: libssl1.0.0\nPin: release o=Ubuntu,n=xenial\nPin-Priority: 1001" | sudo tee /etc/apt/preferences.d/xenial
+Restart your computer.
